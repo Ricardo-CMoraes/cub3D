@@ -7,11 +7,11 @@ INC		= -I./includes
 UNAME_S		:= $(shell uname -s)
 
 ifeq ($(UNAME_S), Linux)
-    MLX_DIR	= ./minilibx-linux
+    MLX_DIR	= ./libs/minilibx-linux
     MLX_LNK	= -L$(MLX_DIR) -lmlx -lXext -lX11 -lm
     MLX_INC	= -I$(MLX_DIR)
 else
-    MLX_DIR	= ./minilibx_macos_metal/minilibx_mms_20200219
+    MLX_DIR	= ./libs/minilibx_macos_metal/minilibx_mms_20200219
     MLX_LNK	= -L$(MLX_DIR) -lmlx -framework AppKit -framework Metal
     MLX_INC	= -I$(MLX_DIR)
 endif

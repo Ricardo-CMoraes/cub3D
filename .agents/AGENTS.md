@@ -47,9 +47,10 @@ Every `.h` file must use the following pattern (UPPERCASE filename):
 ```
 cub3D/
 ├── .agents/AGENTS.md
-├── minilibx-linux/             ← minilibx for Linux/WSL2
-├── minilibx_macos_metal/       ← minilibx for macOS (Metal)
-│   └── minilibx_mms_20200219/
+├── libs/
+│   ├── minilibx-linux/             ← minilibx for Linux/WSL2
+│   └── minilibx_macos_metal/       ← minilibx for macOS (Metal)
+│       └── minilibx_mms_20200219/
 ├── includes/
 │   ├── cub3d.h       ← main struct (t_game) + prototypes
 │   ├── parser.h      ← Parser <-> Engine contract
@@ -147,7 +148,7 @@ chore(makefile): add mlx_linux detection for WSL2
 
 ### Scope of Work
 - rida-cos handles: **Motor Gráfico, DDA Raycasting, MLX, Player Movement**.
-- Joao handles: **Parsing, Validation, `.cub` file reading**.
+- jnovais handles: **Parsing, Validation, `.cub` file reading**.
 - Antigravity must respect this division and avoid generating parser code for
   rida-cos's scope unless explicitly asked.
 
@@ -157,7 +158,7 @@ chore(makefile): add mlx_linux detection for WSL2
 
 - `includes/parser.h` — This is a shared contract. Any change must be
   reviewed by both partners.
-- `libs/mlx_linux/` and `libs/mlx_mac/` — These are vendored dependencies.
+- `libs/minilibx-linux/` and `libs/minilibx_macos_metal/` — These are vendored dependencies.
 - `.agents/AGENTS.md` — This file itself.
 
 ---
