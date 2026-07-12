@@ -8,6 +8,8 @@
 # include <math.h>
 # include <string.h>
 
+# include "mlx.h"
+# include "libft.h"
 # include "parser.h"
 # include "keycodes.h"
 
@@ -90,7 +92,7 @@ void	error_exit(t_game *game, const char *msg);
 void	cast_rays(t_game *game);
 
 /* src/engine/renderer.c */
-void	render_frame(t_game *game);
+int	render_frame(t_game *game);
 void	put_pixel(t_mlx *mlx, int x, int y, int color);
 
 /* src/engine/textures.c */
