@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jnovais <jnovais@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rida-cos <rida-cos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/01 20:48:01 by jnovais           #+#    #+#             */
-/*   Updated: 2025/08/01 20:48:23 by jnovais          ###   ########.fr       */
+/*   Created: 2025/07/19 20:09:34 by rida-cos          #+#    #+#             */
+/*   Updated: 2025/08/04 19:12:22 by rida-cos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,19 @@
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
-	unsigned int	i;
-	unsigned int	x;
-	char			*dest;
+	size_t	s1_len;
+	size_t	s2_len;
+	char	*joined;
 
 	if (!s1 || !s2)
-		return (0);
-	dest = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
-	if (!dest)
 		return (NULL);
-	i = 0;
-	x = 0;
-	while (s1[i])
-		dest[x++] = s1[i++];
-	i = 0;
-	while (s2[i])
-		dest[x++] = s2[i++];
-	dest[x] = '\0';
-	return (dest);
+	s1_len = ft_strlen((char *)s1);
+	s2_len = ft_strlen((char *)s2);
+	joined = (char *)malloc(sizeof(char) * (s1_len + s2_len + 1));
+	if (!joined)
+		return (NULL);
+	ft_memcpy(joined, s1, s1_len);
+	ft_memcpy(joined + s1_len, s2, s2_len);
+	joined[s1_len + s2_len] = '\0';
+	return (joined);
 }
