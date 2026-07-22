@@ -1,3 +1,3 @@
 #include "parser.h"
 
-/* TODO: Joao — parse NO/SO/WE/EA texture paths and F/C colors */
+/* Moved to parse_map.c by jnovais — kept as placeholder for Makefile compat */
