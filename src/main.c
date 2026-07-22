@@ -42,6 +42,7 @@ void	init_game(t_game *game, t_map_data *map)
 		error_exit(game, "mlx_new_image failed");
 	game->mlx.addr = mlx_get_data_addr(game->mlx.img,
 			&game->mlx.bpp, &game->mlx.line_len, &game->mlx.endian);
+	init_player(game);
 }
 
 /*
@@ -84,6 +85,7 @@ int	main(int argc, char **argv)
 	if (!load_textures(&game))
 		error_exit(&game, "Error: failed to load textures");
 	mlx_hook(game.mlx.win, 2, 1L << 0, handle_keypress, &game);
+	mlx_hook(game.mlx.win, 17, 0, handle_close, &game);
 	mlx_loop_hook(game.mlx.mlx, render_frame, &game);
 	mlx_loop(game.mlx.mlx);
 	cleanup_game(&game);

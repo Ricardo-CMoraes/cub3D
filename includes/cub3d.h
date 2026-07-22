@@ -81,6 +81,30 @@ typedef struct s_game
 	t_map_data	*map;
 }	t_game;
 
+/*
+** t_ray — per-column raycasting intermediate data
+*/
+typedef struct s_ray
+{
+	double	dir_x;
+	double	dir_y;
+	int		map_x;
+	int		map_y;
+	double	delta_x;
+	double	delta_y;
+	double	side_x;
+	double	side_y;
+	int		step_x;
+	int		step_y;
+	int		side;
+	double	wall_dist;
+	int		line_h;
+	int		draw_start;
+	int		draw_end;
+	int		tex_idx;
+	double	wall_x;
+}	t_ray;
+
 /* --- Prototypes --- */
 
 /* src/main.c */
@@ -92,14 +116,19 @@ void	error_exit(t_game *game, const char *msg);
 void	cast_rays(t_game *game);
 
 /* src/engine/renderer.c */
-int	render_frame(t_game *game);
+int		render_frame(t_game *game);
 void	put_pixel(t_mlx *mlx, int x, int y, int color);
+void	draw_tex_column(t_game *game, t_ray *ray, int x);
 
 /* src/engine/textures.c */
 int		load_textures(t_game *game);
 
+/* src/player/init_player.c */
+void	init_player(t_game *game);
+
 /* src/player/movement.c */
 int		handle_keypress(int keycode, t_game *game);
+int		handle_close(t_game *game);
 
 /* src/player/collision.c */
 int		is_wall(t_game *game, double x, double y);

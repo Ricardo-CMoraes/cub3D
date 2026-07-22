@@ -10,6 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <fcntl.h>
+#include <stdlib.h>
+#include "libft.h"
 #include "parser.h"
 
 static int	is_space(char c)
