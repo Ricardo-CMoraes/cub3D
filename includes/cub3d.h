@@ -22,6 +22,15 @@
 # define MOVE_SPEED	0.05
 # define ROT_SPEED	0.03
 
+/* Key state indices (W A S D LEFT RIGHT) */
+# define KEY_IDX_FWD	0
+# define KEY_IDX_LEFT	1
+# define KEY_IDX_BACK	2
+# define KEY_IDX_RIGHT	3
+# define KEY_IDX_RLEFT	4
+# define KEY_IDX_RRIGHT	5
+# define KEY_STATES		6
+
 /* Texture slot indices */
 # define TEX_NO		0
 # define TEX_SO		1
@@ -79,6 +88,7 @@ typedef struct s_game
 	t_player	player;
 	t_tex		textures[TEX_COUNT];
 	t_map_data	*map;
+	int			keys[KEY_STATES];
 }	t_game;
 
 /*
@@ -128,7 +138,11 @@ void	init_player(t_game *game);
 
 /* src/player/movement.c */
 int		handle_keypress(int keycode, t_game *game);
+int		handle_keyrelease(int keycode, t_game *game);
 int		handle_close(t_game *game);
+
+/* src/player/input.c */
+void	process_movement(t_game *game);
 
 /* src/player/collision.c */
 int		is_wall(t_game *game, double x, double y);

@@ -97,6 +97,7 @@ static void	draw_floor_ceiling(t_game *game)
 */
 int	render_frame(t_game *game)
 {
+	process_movement(game);
 	draw_floor_ceiling(game);
 	cast_rays(game);
 	mlx_put_image_to_window(game->mlx.mlx,

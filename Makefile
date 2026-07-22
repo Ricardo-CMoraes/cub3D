@@ -31,6 +31,7 @@ SRC		= $(SRC_DIR)/main.c \
 		  $(SRC_DIR)/engine/renderer.c \
 		  $(SRC_DIR)/engine/textures.c \
 		  $(SRC_DIR)/player/init_player.c \
+		  $(SRC_DIR)/player/input.c \
 		  $(SRC_DIR)/player/movement.c \
 		  $(SRC_DIR)/player/collision.c \
 		  $(SRC_DIR)/utils/error.c \
