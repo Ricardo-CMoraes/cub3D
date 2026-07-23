@@ -169,3 +169,40 @@ chore(makefile): add mlx_linux detection for WSL2
   this document. Once provided, treat it as the canonical reference.
 - The project will be compiled with: `cc -Wall -Wextra -Werror`
 - Target platforms: **macOS** (primary dev) and **Linux/WSL2** (partner dev).
+
+---
+
+## 7. Mandatory Part Specifications (Parte Obrigatória)
+
+- **Program Name:** `cub3D`
+- **Files to Turn In:** All project files
+- **Makefile Targets:** `all`, `clean`, `fclean`, `re`, `bonus`
+- **Arguments:** A map in format `*.cub`
+- **Authorized External Functions:**
+  - `open`, `close`, `read`, `write`, `printf`, `malloc`, `free`, `perror`, `strerror`, `exit`, `gettimeofday`
+  - All functions of the `math` library (`-lm`, `man 3 math`)
+  - All functions of the `MinilibX` library
+- **Libft Authorized:** Yes
+- **Description:** 3D graphical representation of the inside of a maze from a first-person perspective using ray-casting.
+
+### Constraints & Requirements
+- **MiniLibX Usage:** Must use MiniLibX (system-installed or compiled from sources).
+- **Window Management:** Window management must remain smooth (changing focus, minimizing, etc.).
+- **Wall Textures:** 4 different wall textures depending on orientation (North, South, East, West).
+- **Floor & Ceiling Colors:** Configurable as two distinct colors.
+- **Window & Controls:**
+  - Left / Right arrow keys: Look left / right.
+  - `W`, `A`, `S`, `D` keys: Move perspective through the maze.
+  - `ESC` key: Close window and terminate program cleanly.
+  - Red `X` button (window close): Close window and terminate program cleanly.
+  - Use of MiniLibX images is strongly recommended.
+- **Scene Description File (`*.cub`):**
+  - First argument must be a `.cub` scene description file.
+  - **Map Composition:** Only 6 valid characters: `0` (empty space), `1` (wall), `N`, `S`, `E`, `W` (player start position and orientation).
+  - **Map Closure:** The map must be completely closed/surrounded by walls (`1`), returning an error otherwise.
+  - **Element Ordering & Formatting:**
+    - Except for the map content, each element type must be separated by one or more empty lines.
+    - Except for the map content (which must always be last), element types can appear in any order in the file.
+    - Except for the map, information in element lines can be separated by one or more spaces.
+    - The map must be parsed as it appears in the file. Spaces are a valid part of the map. Must parse any map respecting the rules.
+
