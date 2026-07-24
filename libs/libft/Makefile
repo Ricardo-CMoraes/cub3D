@@ -15,7 +15,7 @@ SRC	=   ft_isalpha.c	ft_memcpy.c		ft_strrchr.c \
 		ft_putstr_fd.c 	ft_putendl_fd.c ft_putnbr_fd.c \
 		ft_printf.c 	ft_puthex.c 	ft_putnbr_unsigned.c \
 		ft_putnbr.c 	ft_putptr.c		ft_putstr.c n_digits.c \
-		get_next_line.c 	get_next_line_utils.c 
+		get_next_line.c
 
 	
 BONUS = ft_lstnew_bonus.c		ft_lstadd_front_bonus.c		ft_lstsize_bonus.c		ft_lstlast_bonus.c \

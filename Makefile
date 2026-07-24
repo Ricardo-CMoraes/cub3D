@@ -22,6 +22,7 @@ endif
 SRC_DIR		= src
 
 SRC		= $(SRC_DIR)/main.c \
+		  $(SRC_DIR)/parser/parse_config.c \
 		  $(SRC_DIR)/parser/parse_file.c \
 		  $(SRC_DIR)/parser/parse_map.c \
 		  $(SRC_DIR)/parser/parse_textures.c \
@@ -29,6 +30,8 @@ SRC		= $(SRC_DIR)/main.c \
 		  $(SRC_DIR)/engine/raycasting.c \
 		  $(SRC_DIR)/engine/renderer.c \
 		  $(SRC_DIR)/engine/textures.c \
+		  $(SRC_DIR)/player/init_player.c \
+		  $(SRC_DIR)/player/input.c \
 		  $(SRC_DIR)/player/movement.c \
 		  $(SRC_DIR)/player/collision.c \
 		  $(SRC_DIR)/utils/error.c \

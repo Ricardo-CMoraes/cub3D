@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_textures.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rida-cos <rida-cos@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/07/22 21:42:32 by rida-cos          #+#    #+#             */
+/*   Updated: 2026/07/22 21:42:36 by rida-cos         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "parser.h"
 
-/* TODO: Joao — parse NO/SO/WE/EA texture paths and F/C colors */
+/* Moved to parse_map.c by jnovais — kept as placeholder for Makefile compat */
