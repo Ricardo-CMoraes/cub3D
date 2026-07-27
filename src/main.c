@@ -6,7 +6,7 @@
 /*   By: rida-cos <rida-cos@student.42.ft>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/26 21:34:48 by rida-cos          #+#    #+#             */
-/*   Updated: 2026/07/26 22:19:35 by rida-cos         ###   ########.fr       */
+/*   Updated: 2026/07/26 23:12:02 by rida-cos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,21 +68,12 @@ int	main(int argc, char **argv)
 	t_map_data	*map;
 
 	if (argc != 2)
-	{
-		ft_error("Usage: ./cub3D <map.cub>");
-		return (1);
-	}
+		error_exit(NULL, "Usage: ./cub3D <map.cub>");
 	if (!validate_extension(argv[1]))
-	{
-		ft_error("Error: file must have .cub extension");
-		return (1);
-	}
+		error_exit(NULL, "Error: file must have .cub extension");
 	map = parse_cub_file(argv[1]);
 	if (!map)
-	{
-		ft_error("Error: failed to parse map file");
-		return (1);
-	}
+		error_exit(NULL, "Error: failed to parse map file");
 	ft_memset(&game, 0, sizeof(t_game));
 	init_game(&game, map);
 	if (!load_textures(&game))
