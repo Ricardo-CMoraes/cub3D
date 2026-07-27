@@ -6,7 +6,7 @@
 /*   By: rida-cos <rida-cos@student.42.ft>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/26 21:34:48 by rida-cos          #+#    #+#             */
-/*   Updated: 2026/07/26 21:38:11 by rida-cos         ###   ########.fr       */
+/*   Updated: 2026/07/26 22:19:35 by rida-cos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,13 @@
 static int	validate_extension(const char *file)
 {
 	int	len;
+	int	cmp_result;
 
-	len = (int)strlen(file);
+	len = (int)ft_strlen(file);
 	if (len < 5)
 		return (0);
-	return (strcmp(file + len - 4, ".cub") == 0);
+	cmp_result = ft_strncmp(file + len - 4, ".cub", 4);
+	return (cmp_result == 0);
 }
 
 /*
