@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   renderer.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rida-cos <rida-cos@student.42.ft>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/07/26 23:27:03 by rida-cos          #+#    #+#             */
+/*   Updated: 2026/07/26 23:27:08 by rida-cos         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 /*
@@ -59,15 +71,11 @@ void	draw_tex_column(t_game *game, t_ray *ray, int x)
 ** draw_floor_ceiling — fill the top half with ceiling colour and the bottom
 ** half with floor colour using the RGB values from the parsed map.
 */
-static void	draw_floor_ceiling(t_game *game)
+static void	draw_floor_ceiling(t_game *game, int fc, int cc)
 {
 	int	x;
 	int	y;
-	int	fc;
-	int	cc;
 
-	fc = game->map->floor_color.hex;
-	cc = game->map->ceiling_color.hex;
 	y = 0;
 	while (y < WIN_HEIGHT / 2)
 	{
@@ -97,8 +105,13 @@ static void	draw_floor_ceiling(t_game *game)
 */
 int	render_frame(t_game *game)
 {
+	int	fc;
+	int	cc;
+
+	fc = game->map->floor_color.hex;
+	cc = game->map->ceiling_color.hex;
 	process_movement(game);
-	draw_floor_ceiling(game);
+	draw_floor_ceiling(game, fc, cc);
 	cast_rays(game);
 	mlx_put_image_to_window(game->mlx.mlx,
 		game->mlx.win, game->mlx.img, 0, 0);
