@@ -120,7 +120,6 @@ typedef struct s_ray
 /* src/main.c */
 void	init_game(t_game *game, t_map_data *map);
 void	cleanup_game(t_game *game);
-void	error_exit(t_game *game, const char *msg);
 
 /* src/engine/raycasting.c */
 void	cast_rays(t_game *game);
@@ -149,6 +148,7 @@ int		is_wall(t_game *game, double x, double y);
 
 /* src/utils/error.c */
 void	ft_error(const char *msg);
+void	error_exit(t_game *game, const char *msg);
 
 /* src/utils/memory.c */
 void	free_textures(t_game *game);

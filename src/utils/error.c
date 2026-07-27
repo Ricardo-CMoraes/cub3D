@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rida-cos <rida-cos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rida-cos <rida-cos@student.42.ft>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/22 21:48:18 by rida-cos          #+#    #+#             */
-/*   Updated: 2026/07/22 21:48:20 by rida-cos         ###   ########.fr       */
+/*   Updated: 2026/07/26 21:35:42 by rida-cos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,4 +19,15 @@ void	ft_error(const char *msg)
 {
 	write(2, msg, strlen(msg));
 	write(2, "\n", 1);
+}
+
+/*
+** error_exit — prints error, cleans up and exits with status 1.
+*/
+void	error_exit(t_game *game, const char *msg)
+{
+	ft_error(msg);
+	if (game)
+		cleanup_game(game);
+	exit(1);
 }

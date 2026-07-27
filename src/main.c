@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rida-cos <rida-cos@student.42.ft>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/07/26 21:34:48 by rida-cos          #+#    #+#             */
+/*   Updated: 2026/07/26 21:38:11 by rida-cos         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 /*
@@ -11,17 +23,6 @@ static int	validate_extension(const char *file)
 	if (len < 5)
 		return (0);
 	return (strcmp(file + len - 4, ".cub") == 0);
-}
-
-/*
-** error_exit — prints error, cleans up and exits with status 1.
-*/
-void	error_exit(t_game *game, const char *msg)
-{
-	ft_error(msg);
-	if (game)
-		cleanup_game(game);
-	exit(1);
 }
 
 /*
