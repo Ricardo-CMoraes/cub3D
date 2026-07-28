@@ -70,14 +70,14 @@ int	main(int argc, char **argv)
 	if (argc != 2)
 		error_exit(NULL, "Usage: ./cub3D <map.cub>");
 	if (!validate_extension(argv[1]))
-		error_exit(NULL, "Error: file must have .cub extension");
+		error_exit(NULL, "file must have .cub extension");
 	map = parse_cub_file(argv[1]);
 	if (!map)
-		error_exit(NULL, "Error: failed to parse map file");
+		error_exit(NULL, get_parse_error());
 	ft_memset(&game, 0, sizeof(t_game));
 	init_game(&game, map);
 	if (!load_textures(&game))
-		error_exit(&game, "Error: failed to load textures");
+		error_exit(&game, "failed to load textures");
 	mlx_hook(game.mlx.win, 2, 1L << 0, handle_keypress, &game);
 	mlx_hook(game.mlx.win, 3, 1L << 1, handle_keyrelease, &game);
 	mlx_hook(game.mlx.win, 17, 0, handle_close, &game);
