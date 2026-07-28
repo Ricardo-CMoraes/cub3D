@@ -3,59 +3,70 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jnovais <jnovais@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rida-cos <rida-cos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/01 20:04:35 by jnovais           #+#    #+#             */
-/*   Updated: 2025/08/05 20:29:53 by jnovais          ###   ########.fr       */
+/*   Created: 2025/07/20 18:38:21 by rida-cos          #+#    #+#             */
+/*   Updated: 2025/08/02 14:22:00 by rida-cos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	calculate_size(int n)
+static void	fill_buffer(char *buffer, int *index, long n)
 {
-	int	i;
+	char	a;
 
+	if (n >= 10)
+	{
+		fill_buffer(buffer, index, n / 10);
+		n = n % 10;
+	}
+	if (n < 10)
+	{
+		a = n + '0';
+		buffer[*index] = a;
+		(*index)++;
+	}
+}
+
+static void	*fill_number(char *buffer, int i)
+{
+	char	*number;
+
+	number = malloc(sizeof(char) * (i + 1));
+	if (!number)
+		return (0);
 	i = 0;
-	if (n == -2147483648)
-		return (11);
-	else if (n == 0)
-		return (1);
-	if (n < 0)
+	while (buffer[i] != '\0')
 	{
-		i++;
-		n = -n;
-	}
-	while (n > 0)
-	{
-		n /= 10;
+		number[i] = buffer[i];
 		i++;
 	}
-	return (i);
+	number[i] = '\0';
+	return (number);
 }
 
 char	*ft_itoa(int n)
 {
-	long		num;
-	char		*dest;
-	ssize_t		size;
+	int		i;
+	char	*buffer;
+	char	*number;
+	long	nb;
 
-	num = n;
-	size = calculate_size(num);
-	dest = malloc (sizeof(char) * (size + 1));
-	if (!dest)
-		return (NULL);
-	dest[size] = '\0';
-	if (num == 0)
-		dest[0] = '0';
-	if (num < 0)
-		num *= -1;
-	while (num)
+	nb = n;
+	buffer = malloc(sizeof(char) * 13);
+	if (!buffer)
+		return (0);
+	i = 0;
+	if (nb < 0)
 	{
-		dest[--size] = (num % 10) + '0';
-		num /= 10;
+		buffer[i] = '-';
+		nb = (-1) * nb;
+		i++;
 	}
-	if (n < 0)
-		dest[0] = '-';
-	return (dest);
+	fill_buffer(buffer, &i, nb);
+	buffer[i] = '\0';
+	number = fill_number(buffer, i);
+	free(buffer);
+	return (number);
 }

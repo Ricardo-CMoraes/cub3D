@@ -24,7 +24,7 @@ typedef struct s_color
 	int	g;
 	int	b;
 	int	hex;
-}t_color;
+}	t_color;
 
 typedef struct s_map_data
 {
@@ -40,7 +40,7 @@ typedef struct s_map_data
 	int		player_start_x;
 	int		player_start_y;
 	char	player_dir;
-}t_map_data;
+}	t_map_data;
 
 t_map_data	*parse_cub_file(const char *file_path);
 void		free_map_data(t_map_data *data);
