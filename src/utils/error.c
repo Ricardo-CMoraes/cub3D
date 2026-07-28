@@ -17,7 +17,7 @@
 */
 void	ft_error(const char *msg)
 {
-	write(2, msg, strlen(msg));
+	write(2, msg, ft_strlen(msg));
 	write(2, "\n", 1);
 }
 
