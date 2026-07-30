@@ -12,6 +12,13 @@
 
 #include "parser.h"
 
+static const char	*g_parse_error = "invalid map file";
+
+const char	*get_parse_error(void)
+{
+	return (g_parse_error);
+}
+
 static int	is_cub_file(const char *file_path)
 {
 	int	len;
@@ -48,9 +55,15 @@ static int	read_line(t_map_data *data, char *line, int *map_started)
 	if (*map_started)
 	{
 		if (is_blank_line(line) || !is_map_line(line))
+		{
+			g_parse_error = "empty or invalid line inside map";
 			return (0);
+		}
 		remove_line_end(line);
-		return (add_map_line(data, line));
+		ok = add_map_line(data, line);
+		if (!ok)
+			g_parse_error = "memory allocation failed while reading map";
+		return (ok);
 	}
 	if (is_blank_line(line))
 		return (1);
@@ -58,13 +71,21 @@ static int	read_line(t_map_data *data, char *line, int *map_started)
 	{
 		*map_started = 1;
 		remove_line_end(line);
-		return (add_map_line(data, line));
+		ok = add_map_line(data, line);
+		if (!ok)
+			g_parse_error = "memory allocation failed while reading map";
+		return (ok);
 	}
 	trimmed = ft_strtrim(line, " \t\n\r");
 	if (!trimmed)
+	{
+		g_parse_error = "memory allocation failed while reading configuration";
 		return (0);
+	}
 	ok = parse_config_line(data, trimmed);
 	free(trimmed);
+	if (!ok)
+		g_parse_error = "invalid, duplicate, or inaccessible configuration";
 	return (ok);
 }
 
@@ -75,14 +96,24 @@ t_map_data	*parse_cub_file(const char *file_path)
 	int			fd;
 	int			map_started;
 
+	g_parse_error = "invalid map file";
 	if (!is_cub_file(file_path))
+	{
+		g_parse_error = "file must have .cub extension";
 		return (NULL);
+	}
 	fd = open(file_path, O_RDONLY);
 	if (fd < 0)
+	{
+		g_parse_error = "could not open map file";
 		return (NULL);
+	}
 	data = ft_calloc(1, sizeof(*data));
 	if (!data)
+	{
+		g_parse_error = "memory allocation failed";
 		return (close(fd), NULL);
+	}
 	data->floor_color.hex = -1;
 	data->ceiling_color.hex = -1;
 	map_started = 0;
@@ -100,7 +131,15 @@ t_map_data	*parse_cub_file(const char *file_path)
 		line = get_next_line(fd);
 	}
 	close(fd);
-	if (!map_started || !validate_map(data))
+	if (!map_started)
+	{
+		g_parse_error = "map is missing";
 		return (free_map_data(data), NULL);
+	}
+	if (!validate_map(data))
+	{
+		g_parse_error = "map is invalid, open, or missing configuration";
+		return (free_map_data(data), NULL);
+	}
 	return (data);
 }
