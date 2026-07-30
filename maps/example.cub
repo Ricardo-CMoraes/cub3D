@@ -1,7 +1,7 @@
-NO ./textures/north.xpm
-SO ./textures/south.xpm
-WE ./textures/west.xpm
-EA ./textures/east.xpm
+NO ./textures/north_red.xpm
+SO ./textures/south_blue.xpm
+WE ./textures/west_green.xpm
+EA ./textures/east_yellow.xpm
 
 F 220,100,0
 C 225,30,0
