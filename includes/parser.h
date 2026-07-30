@@ -42,8 +42,7 @@ typedef struct s_map_data
 	char	player_dir;
 }	t_map_data;
 
-t_map_data	*parse_cub_file(const char *file_path);
-const char	*get_parse_error(void);
+t_map_data	*parse_cub_file(const char *file_path, const char **error);
 void		free_map_data(t_map_data *data);
 int			parse_config_line(t_map_data *data, char *line);
 int			is_map_line(char *line);
