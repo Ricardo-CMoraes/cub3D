@@ -125,12 +125,12 @@ $(LIBFT):
 	$(CC) $(CFLAGS) $(INC) $(MLX_INC) -c $< -o $@
 
 clean:
-	@make clean -C $(MLX_DIR) --silent
 	@make clean -C $(LIBFT_DIR) --silent
 	rm -f $(OBJ) $(OBJ_BONUS)
 	@echo "✓ Objects cleaned"
 
 fclean: clean
+	@make clean -C $(MLX_DIR) --silent
 	@make fclean -C $(LIBFT_DIR) --silent
 	rm -f $(NAME) $(NAME_BONUS)
 	rm -f libmlx.dylib
