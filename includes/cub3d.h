@@ -143,6 +143,7 @@ void	draw_tex_column(t_game *game, t_ray *ray, int x);
 
 /* src/engine/textures.c */
 int		load_textures(t_game *game);
+void	set_ray_texture(t_ray *ray);
 
 /* src/player/init_player.c */
 void	init_player(t_game *game);
