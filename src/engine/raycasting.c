@@ -114,14 +114,7 @@ static void	calc_wall_hit(t_ray *ray, t_game *game)
 	else
 		ray->wall_x = game->player.pos_x + ray->wall_dist * ray->dir_x;
 	ray->wall_x -= floor(ray->wall_x);
-	if (ray->side == 0 && ray->step_x > 0)
-		ray->tex_idx = TEX_EA;
-	else if (ray->side == 0)
-		ray->tex_idx = TEX_WE;
-	else if (ray->step_y > 0)
-		ray->tex_idx = TEX_SO;
-	else
-		ray->tex_idx = TEX_NO;
+	set_ray_texture(ray);
 }
 
 /*

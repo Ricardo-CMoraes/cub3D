@@ -45,3 +45,18 @@ int	load_textures(t_game *game)
 		return (0);
 	return (1);
 }
+
+/*
+** set_ray_texture — select the correct texture based on the wall hit.
+*/
+void	set_ray_texture(t_ray *ray)
+{
+	if (ray->side == 0 && ray->step_x > 0)
+		ray->tex_idx = TEX_EA;
+	else if (ray->side == 0 && ray->step_x < 0)
+		ray->tex_idx = TEX_WE;
+	else if (ray->side == 1 && ray->step_y > 0)
+		ray->tex_idx = TEX_SO;
+	else if (ray->side == 1 && ray->step_y < 0)
+		ray->tex_idx = TEX_NO;
+}
