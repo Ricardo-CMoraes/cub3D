@@ -1,4 +1,4 @@
-NO ./textures/north_red.xpm
+ NO ./textures/north_red.xpm
 SO ./textures/south_blue.xpm
 WE ./textures/west_green.xpm
 EA ./textures/east_yellow.xpm
@@ -25,5 +25,5 @@ C 130,176,216
 101000100000001000101
 101000100000001000101
 101111100000001111101
-1000000000E0000000001
+1000000000S0000000001
 111111111111111111111
