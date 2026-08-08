@@ -94,7 +94,9 @@ endif
 	$(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(MLX_LNK) -o $(NAME)
 	@echo "✓ $(NAME) built successfully"
 
-bonus: $(LIBFT) $(OBJ_BONUS)
+bonus: $(NAME_BONUS)
+
+$(NAME_BONUS): $(LIBFT) $(OBJ_BONUS)
 ifeq ($(UNAME_S), Linux)
 	@make -C $(MLX_DIR) --silent
 else
