@@ -25,7 +25,9 @@ SRC_DIR		= src
 SRC		= $(SRC_DIR)/main.c \
 		  $(SRC_DIR)/parser/parse_config.c \
 		  $(SRC_DIR)/parser/parse_file.c \
+		  $(SRC_DIR)/parser/read_map_file.c \
 		  $(SRC_DIR)/parser/parse_map.c \
+		  $(SRC_DIR)/parser/normalize_map.c \
 		  $(SRC_DIR)/parser/parse_textures.c \
 		  $(SRC_DIR)/parser/validate_map.c \
 		  $(SRC_DIR)/engine/raycasting.c \

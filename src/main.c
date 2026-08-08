@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rida-cos <rida-cos@student.42.ft>          +#+  +:+       +#+        */
+/*   By: jnovais <jnovais@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/07/26 21:34:48 by rida-cos          #+#    #+#             */
-/*   Updated: 2026/07/26 23:12:02 by rida-cos         ###   ########.fr       */
+/*   Created: 2026/07/29 21:55:28 by jnovais           #+#    #+#             */
+/*   Updated: 2026/07/29 21:55:28 by jnovais          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,14 +66,15 @@ int	main(int argc, char **argv)
 {
 	t_game		game;
 	t_map_data	*map;
+	const char	*parse_error;
 
 	if (argc != 2)
 		error_exit(NULL, "Usage: ./cub3D <map.cub>");
 	if (!validate_extension(argv[1]))
 		error_exit(NULL, "file must have .cub extension");
-	map = parse_cub_file(argv[1]);
+	map = parse_cub_file(argv[1], &parse_error);
 	if (!map)
-		error_exit(NULL, get_parse_error());
+		error_exit(NULL, parse_error);
 	ft_memset(&game, 0, sizeof(t_game));
 	init_game(&game, map);
 	if (!load_textures(&game))
