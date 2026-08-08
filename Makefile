@@ -28,7 +28,6 @@ SRC		= $(SRC_DIR)/main.c \
 		  $(SRC_DIR)/parser/read_map_file.c \
 		  $(SRC_DIR)/parser/parse_map.c \
 		  $(SRC_DIR)/parser/normalize_map.c \
-		  $(SRC_DIR)/parser/parse_textures.c \
 		  $(SRC_DIR)/parser/validate_map.c \
 		  $(SRC_DIR)/engine/raycasting.c \
 		  $(SRC_DIR)/engine/renderer.c \
@@ -48,7 +47,6 @@ SRC_BONUS	= $(SRC_DIR)/main.c \
 		  $(SRC_DIR)/parser/read_map_file.c \
 		  $(SRC_DIR)/parser/parse_map.c \
 		  $(SRC_DIR)/parser/normalize_map.c \
-		  $(SRC_DIR)/parser/parse_textures.c \
 		  $(SRC_DIR)/parser/validate_map.c \
 		  $(SRC_DIR)/engine/raycasting.c \
 		  $(SRC_DIR)/engine/renderer_bonus.c \
