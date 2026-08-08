@@ -1,0 +1,36 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   keycodes.h                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rida-cos <rida-cos@student.42.ft>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/07/29 00:53:35 by rida-cos          #+#    #+#             */
+/*   Updated: 2026/07/29 00:53:38 by rida-cos         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef KEYCODES_H
+# define KEYCODES_H
+
+# ifdef __linux__
+/* Keycodes for Linux / WSL2 */
+#  define KEY_ESC	65307
+#  define KEY_W		119
+#  define KEY_A		97
+#  define KEY_S		115
+#  define KEY_D		100
+#  define KEY_LEFT	65361
+#  define KEY_RIGHT	65363
+# else
+/* Keycodes for macOS */
+#  define KEY_ESC	53
+#  define KEY_W		13
+#  define KEY_A		0
+#  define KEY_S		1
+#  define KEY_D		2
+#  define KEY_LEFT	123
+#  define KEY_RIGHT	124
+# endif
+
+#endif
