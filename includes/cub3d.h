@@ -153,11 +153,8 @@ int		handle_keypress(int keycode, t_game *game);
 int		handle_keyrelease(int keycode, t_game *game);
 int		handle_close(t_game *game);
 
-/* src/player/input.c */
+/* src/player/process_movement.c */
 void	process_movement(t_game *game);
-
-/* src/player/collision.c */
-int		is_wall(t_game *game, double x, double y);
 
 /* src/utils/error.c */
 void	ft_error(const char *msg);
