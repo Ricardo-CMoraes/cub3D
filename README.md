@@ -66,6 +66,7 @@ To start the game, run the binary passing the path to a valid `.cub` map as an a
 
 ### Project Study Materials
 - [Desmos Raycasting Simulation](https://www.desmos.com/calculator/ipqm4bs6qd) - Interactive simulation created to visually illustrate the behavior of the direction (`dir`) and camera plane (`plan`) vectors, as well as the mechanics of rotation and ray calculation.
+- [Desmos Distancies](https://www.desmos.com/geometry/h8tzdh6jai) - Ilustration of ray directions
 
 ### Use of Artificial Intelligence
 
