@@ -34,15 +34,21 @@ git clone <repo_url> cub3D
 cd cub3D
 ```
 
-Ensure that the MiniLibX library is correctly placed in the `libs/` directory. The project is structured to support `mlx_mac` for macOS (Metal) and `mlx_linux` for Linux environments.
+Ensure that the dependencies are present in the directories expected by the `Makefile`:
+
+- `libs/libft` for Libft;
+- `libs/minilibx-linux` on Linux / WSL2;
+- `libs/minilibx_macos_metal` on macOS.
 
 ### Compilation
 
 The project includes a `Makefile` with the following rules available:
+
 - `make` or `make all`: Compiles the `cub3D` executable.
 - `make clean`: Removes intermediate object files.
 - `make fclean`: Removes object files and the final executable.
 - `make re`: Recompiles the entire project from scratch.
+- `make bonus`: Compiles the bonus version, `cub3D_bonus`, with a minimap.
 - `make norm`: Runs the Norminette tool on the source directories (`src/` and `includes/`).
 
 ### Execution
@@ -89,6 +95,38 @@ We did not use AI as a mere final code generator (copy and paste), but rather as
 ## Raycasting Math Formulas
 
 This section documents the core mathematical formulas used in the engine, mapped to the exact variable names found in our codebase (`ray`, `player`, `tex`). These formulas are adapted from Lode's Computer Graphics Tutorial - Raycasting. It is recommend to open this file in an IDE with math formula rendering support.
+
+### 1. Ray Screen Mapping
+
+$$\text{camera\_x} = 2 \times \frac{x}{\text{WIN\_WIDTH}} - 1$$
+
+$$\text{ray->dir\_x} = \text{player.dir\_x} + \text{player.plane\_x} \times \text{camera\_x}$$
+
+$$\text{ray->dir\_y} = \text{player.dir\_y} + \text{player.plane\_y} \times \text{camera\_x}$$
+
+The configuration elements may appear in any order and must be separated by one or more empty lines. The map must be the final block in the file. It may contain only spaces, `0`, `1`, `N`, `S`, `E`, and `W`; it must contain exactly one player start position and be completely enclosed by walls. Invalid configurations, textures, colors, or maps are rejected with an error message.
+
+## Resources
+
+### Classic References
+
+- [Lode's Computer Graphics Tutorial - Raycasting](https://lodev.org/cgtutor/raycasting.html) - The most complete and widely used tutorial to understand and implement the mathematical logic behind DDA and raycasting.
+- [MiniLibX Documentation](https://harm-smits.github.io/42docs/libs/minilibx) - Extensive unofficial documentation to understand MiniLibX hooks, events, and image management.
+
+### Project Study Materials
+
+- [Desmos Raycasting Simulation](https://www.desmos.com/calculator/ipqm4bs6qd) - Interactive simulation illustrating the direction (`dir`) and camera-plane (`plane`) vectors, rotation, and ray calculation.
+- [Desmos Distances](https://www.desmos.com/geometry/h8tzdh6jai) - Illustration of ray directions.
+
+### Use of Artificial Intelligence
+
+Artificial intelligence was used as a learning and documentation aid. It helped us discuss the DDA raycasting algorithm, explore parser-validation cases, review documentation against the project subject, and organize development tasks. Every suggested result was reviewed, tested, and discussed by the team before being incorporated into the project.
+
+---
+
+## Raycasting Math Formulas
+
+This section documents the core mathematical formulas used in the engine, mapped to the exact variable names found in our codebase (`ray`, `player`, `tex`). These formulas are adapted from Lode's Computer Graphics Tutorial - Raycasting. It is recommended to open this file in an IDE with math formula rendering support.
 
 ### 1. Ray Screen Mapping
 
