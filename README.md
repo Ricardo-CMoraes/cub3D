@@ -88,7 +88,7 @@ We did not use AI as a mere final code generator (copy and paste), but rather as
 
 ## Raycasting Math Formulas
 
-This section documents the core mathematical formulas used in the engine, mapped to the exact variable names found in our codebase (`ray`, `player`, `tex`).
+This section documents the core mathematical formulas used in the engine, mapped to the exact variable names found in our codebase (`ray`, `player`, `tex`). These formulas are adapted from Lode's Computer Graphics Tutorial - Raycasting. It is recommend to open this file in an IDE with math formula rendering support.
 
 ### 1. Ray Screen Mapping
 
