@@ -60,23 +60,49 @@ To start the game, run the binary passing the path to a valid `.cub` map as an a
 ```
 
 **Basic Controls:**
-
 - `W`, `A`, `S`, `D`: Move the perspective through the maze (forward, left, backward, right).
-- `Left Arrow` and `Right Arrow`: Rotate the camera to the left or right.
-- `ESC` or the window close button: Cleanly exits the program.
+- `←` and `→` (Arrows): Rotate the camera (vision) to the left or right.
+- `ESC` or close window button: Cleanly exits the program, without memory leaks.
 
-### `.cub` Scene Format
+## Resources
 
-The program accepts one `.cub` scene file. Before the map, the file must define the four wall textures and the floor and ceiling colors:
+### Classic References
+- [Lode's Computer Graphics Tutorial - Raycasting](https://lodev.org/cgtutor/raycasting.html) - The most complete and widely used tutorial to understand and implement the mathematical logic behind DDA and raycasting.
+- [MiniLibX Documentation](https://harm-smits.github.io/42docs/libs/minilibx) - Extensive unofficial documentation to understand MiniLibX hooks, events, and image management.
 
-```text
-NO ./textures/north_red.xpm
-SO ./textures/south_blue.xpm
-WE ./textures/west_green.xpm
-EA ./textures/east_yellow.xpm
-F 220,100,0
-C 225,30,0
-```
+### Project Study Materials
+- [Desmos Raycasting Simulation](https://www.desmos.com/calculator/ipqm4bs6qd) - Interactive simulation created to visually illustrate the behavior of the direction (`dir`) and camera plane (`plan`) vectors, as well as the mechanics of rotation and ray calculation.
+- [Desmos Distancies](https://www.desmos.com/geometry/h8tzdh6jai) - Ilustration of ray directions
+
+### Use of Artificial Intelligence
+
+In line with 42's encouragement (*"Develop prompt skills — both for coding and other tasks — that will benefit your future career"*), artificial intelligence was employed in this project responsibly, methodologically, and critically.
+
+We did not use AI as a mere final code generator (copy and paste), but rather as an advanced tool for learning and workflow orchestration. The main applications included:
+
+1. **Agentic Development & Pair Programming:** AI was integrated into the repository through strict rules (`AGENTS.md` files) defining clear contracts regarding project architecture, Norminette conventions, and individual student responsibilities (`rida-cos` and `jnovais`).
+2. **12factor Agentics Ops:** We applied modern methodologies to manage AI "operations", ensuring the agent acted with determinism within well-defined architectural boundaries and isolated code scopes, facilitating iterative human validation.
+3. **Prompt Engineering for Learning:** We actively used AI to discuss mathematical optimization approaches in DDA and parsing designs for secure validation of closed maps. The generated discussions were subsequently validated with peers, refining the group's joint implementation and ensuring complete mastery over all inserted code.
+
+#### AI and Agentic Ops Study References
+- [Anthropic Learn - AI and Prompt Engineering Learning Guide](https://www.anthropic.com/learn)
+- [12 Factor Agent Ops - Methodology for AI agents](https://www.12factoragentops.com)
+- [Fábio Akita Article - How to use AI in real projects](https://akitaonrails.com/2026/02/20/do-zero-a-pos-producao-em-1-semana-como-usar-ia-em-projetos-de-verdade-bastidores-do-the-m-akita-chronicles/)
+- [Reference Video - AI and Development (YouTube)](https://youtu.be/yDO21vewdes?si=wydUPbgAtf6ZVg7g)
+
+---
+
+## Raycasting Math Formulas
+
+This section documents the core mathematical formulas used in the engine, mapped to the exact variable names found in our codebase (`ray`, `player`, `tex`). These formulas are adapted from Lode's Computer Graphics Tutorial - Raycasting. It is recommend to open this file in an IDE with math formula rendering support.
+
+### 1. Ray Screen Mapping
+
+$$\text{camera\_x} = 2 \times \frac{x}{\text{WIN\_WIDTH}} - 1$$
+
+$$\text{ray->dir\_x} = \text{player.dir\_x} + \text{player.plane\_x} \times \text{camera\_x}$$
+
+$$\text{ray->dir\_y} = \text{player.dir\_y} + \text{player.plane\_y} \times \text{camera\_x}$$
 
 The configuration elements may appear in any order and must be separated by one or more empty lines. The map must be the final block in the file. It may contain only spaces, `0`, `1`, `N`, `S`, `E`, and `W`; it must contain exactly one player start position and be completely enclosed by walls. Invalid configurations, textures, colors, or maps are rejected with an error message.
 
