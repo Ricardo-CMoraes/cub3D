@@ -33,9 +33,8 @@ SRC		= $(SRC_DIR)/main.c \
 		  $(SRC_DIR)/engine/renderer.c \
 		  $(SRC_DIR)/engine/textures.c \
 		  $(SRC_DIR)/player/init_player.c \
-		  $(SRC_DIR)/player/input.c \
 		  $(SRC_DIR)/player/movement.c \
-		  $(SRC_DIR)/player/collision.c \
+		  $(SRC_DIR)/player/process_movement.c \
 		  $(SRC_DIR)/utils/error.c \
 		  $(SRC_DIR)/utils/memory.c
 
@@ -53,9 +52,8 @@ SRC_BONUS	= $(SRC_DIR)/main.c \
 		  $(SRC_DIR)/engine/minimap_bonus.c \
 		  $(SRC_DIR)/engine/textures.c \
 		  $(SRC_DIR)/player/init_player.c \
-		  $(SRC_DIR)/player/input.c \
 		  $(SRC_DIR)/player/movement.c \
-		  $(SRC_DIR)/player/collision.c \
+		  $(SRC_DIR)/player/process_movement.c \
 		  $(SRC_DIR)/utils/error.c \
 		  $(SRC_DIR)/utils/memory.c
 
