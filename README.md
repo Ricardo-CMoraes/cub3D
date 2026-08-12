@@ -1,116 +1,215 @@
-*Este projeto foi criado como parte do currículo da 42 por rida-cos e jnovais.*
+*This project was created as part of the 42 curriculum by rida-cos, jnovais.*
 
 # cub3D
 
-Uma recriação de um raycaster em primeira pessoa, inspirada em Wolfenstein 3D e desenvolvida em C com a MiniLibX.
+## Description
 
-## Descrição
+**cub3D** is a 42 School project inspired by the legendary Wolfenstein 3D, the world's first first-person shooter (FPS) game. The main goal of this project is to create a real-time 3D raycasting graphics engine, written purely in C and using the MiniLibX graphics library.
 
-O `cub3D` renderiza uma representação 3D do interior de um labirinto a partir da perspetiva do jogador. O projeto aplica ray-casting para transformar um mapa 2D em paredes texturizadas, com texturas distintas para Norte, Sul, Este e Oeste, e cores configuráveis para o chão e o teto.
+This project allows exploring fundamental concepts of computer graphics, applied mathematics (trigonometry, vectors, and matrices), window and event management (inputs), texture rendering, and performance optimization. It serves as a robust introduction to graphics engine development and low-level programming of interactive visual interfaces.
 
-O programa recebe uma cena no formato `.cub`. Antes de iniciar a janela, valida a configuração, os caminhos das texturas, as cores RGB, o mapa, a posição inicial do jogador e se o labirinto está totalmente fechado por paredes. Quando encontra uma configuração inválida, termina de forma limpa e apresenta uma mensagem de erro.
+## Instructions
 
-## Funcionalidades
+### Prerequisites
 
-- Ray-casting em tempo real com MiniLibX.
-- Texturas de parede por orientação (`NO`, `SO`, `WE` e `EA`).
-- Cores RGB independentes para chão (`F`) e teto (`C`).
-- Movimento com `W`, `A`, `S` e `D`, e rotação com as setas esquerda e direita.
-- Encerramento limpo com `ESC` ou pelo botão de fechar da janela.
-- Validação de mapas e ficheiros de cena `.cub`.
-- Bónus disponível com minimapa através de `make bonus`.
+To compile and run the project, you will need the following dependencies:
 
-## Instruções
-
-### Pré-requisitos
-
-É necessário um compilador C, `make`, a MiniLibX e as dependências da plataforma.
-
-**macOS**
-
+**macOS:**
 ```bash
+# XCode command line tools
 xcode-select --install
 ```
 
-**Linux / WSL2**
-
+**Linux / WSL2:**
 ```bash
 sudo apt-get install -y gcc make xorg libxext-dev libbsd-dev
 ```
 
-As bibliotecas MiniLibX e Libft devem estar presentes nas pastas esperadas pelo `Makefile` (`libs/minilibx-linux` no Linux ou `libs/minilibx_macos_metal` no macOS, e `libs/libft`).
+### Installation
 
-### Compilação
+Clone the repository to your machine:
 
 ```bash
-make          # compila a parte obrigatória: ./cub3D
-make bonus    # compila a versão com minimapa: ./cub3D_bonus
-make clean    # remove os ficheiros objeto
-make fclean   # remove objetos e binários
-make re       # recompila tudo
-make norm     # verifica src/ e includes/ com a Norminette
+git clone <repo_url> cub3D
+cd cub3D
 ```
 
-### Execução
+Ensure that the dependencies are present in the directories expected by the `Makefile`:
+
+- `libs/libft` for Libft;
+- `libs/minilibx-linux` on Linux / WSL2;
+- `libs/minilibx_macos_metal` on macOS.
+
+### Compilation
+
+The project includes a `Makefile` with the following rules available:
+
+- `make` or `make all`: Compiles the `cub3D` executable.
+- `make clean`: Removes intermediate object files.
+- `make fclean`: Removes object files and the final executable.
+- `make re`: Recompiles the entire project from scratch.
+- `make bonus`: Compiles the bonus version, `cub3D_bonus`, with a minimap.
+- `make norm`: Runs the Norminette tool on the source directories (`src/` and `includes/`).
+
+### Execution
+
+To start the game, run the binary passing the path to a valid `.cub` map as an argument:
 
 ```bash
 ./cub3D maps/test.cub
 ```
 
-Para a versão bónus:
+**Basic Controls:**
 
-```bash
-./cub3D_bonus maps/test.cub
-```
+- `W`, `A`, `S`, `D`: Move the perspective through the maze (forward, left, backward, right).
+- `Left Arrow` and `Right Arrow`: Rotate the camera to the left or right.
+- `ESC` or the window close button: Cleanly exits the program.
 
-O primeiro argumento tem de ser um ficheiro com extensão `.cub`. O mapa deve ser o último bloco do ficheiro, usar apenas `0`, `1`, `N`, `S`, `E`, `W` e espaços, conter exatamente uma posição inicial e estar completamente fechado por paredes.
+### `.cub` Scene Format
 
-### Controlos
-
-| Tecla | Ação |
-| --- | --- |
-| `W` / `S` | Avançar / recuar |
-| `A` / `D` | Mover para a esquerda / direita |
-| `←` / `→` | Rodar a câmara |
-| `ESC` | Fechar o programa |
-
-### Estrutura do ficheiro `.cub`
-
-Antes do mapa, a cena define quatro texturas e duas cores. Os elementos de configuração podem aparecer em qualquer ordem; cada tipo de elemento deve ser separado por uma ou mais linhas vazias. O mapa tem sempre de ser o último bloco do ficheiro.
+The program accepts one `.cub` scene file. Before the map, the file must define the four wall textures and the floor and ceiling colors:
 
 ```text
 NO ./textures/north_red.xpm
-
 SO ./textures/south_blue.xpm
-
 WE ./textures/west_green.xpm
-
 EA ./textures/east_yellow.xpm
-
 F 220,100,0
-
 C 225,30,0
-
-11111
-10001
-10N01
-11111
 ```
 
-## Recursos
+The configuration elements may appear in any order and must be separated by one or more empty lines. The map must be the final block in the file. It may contain only spaces, `0`, `1`, `N`, `S`, `E`, and `W`; it must contain exactly one player start position and be completely enclosed by walls. Invalid configurations, textures, colors, or maps are rejected with an error message.
 
-- [Enunciado do cub3D da 42](https://cdn.intra.42.fr/pdf/pdf/177242/en.subject.pdf) - requisitos do projeto e regras do formato `.cub`.
-- [MiniLibX para Linux](https://github.com/42Paris/minilibx-linux) - biblioteca gráfica utilizada pelo projeto.
-- [Lode's Computer Graphics Tutorial: Raycasting](https://lodev.org/cgtutor/raycasting.html) - referência para os princípios de ray-casting.
-- [Wolfenstein 3D](https://en.wikipedia.org/wiki/Wolfenstein_3D) - contexto histórico e inspiração do projeto.
+## Resources
 
-### Uso de IA
+### Classic References
 
-Nesta documentação, a IA foi usada para analisar o enunciado fornecido, identificar os requisitos obrigatórios do `README.md` e reorganizar este documento. A revisão humana continua necessária para confirmar que os comandos, dependências e funcionalidades documentados correspondem ao estado atual do projeto. Nenhuma alegação sobre a implementação em C deve ser aceite sem leitura, testes e revisão pelos autores.
+- [Lode's Computer Graphics Tutorial - Raycasting](https://lodev.org/cgtutor/raycasting.html) - The most complete and widely used tutorial to understand and implement the mathematical logic behind DDA and raycasting.
+- [MiniLibX Documentation](https://harm-smits.github.io/42docs/libs/minilibx) - Extensive unofficial documentation to understand MiniLibX hooks, events, and image management.
 
-## Equipa
+### Project Study Materials
 
-| Login | Responsabilidade principal |
-| --- | --- |
-| `rida-cos` | Motor gráfico, ray-casting, MiniLibX e movimento do jogador |
-| `jnovais` | Parser, validação e leitura de ficheiros `.cub` |
+- [Desmos Raycasting Simulation](https://www.desmos.com/calculator/ipqm4bs6qd) - Interactive simulation illustrating the direction (`dir`) and camera-plane (`plane`) vectors, rotation, and ray calculation.
+- [Desmos Distances](https://www.desmos.com/geometry/h8tzdh6jai) - Illustration of ray directions.
+
+### Use of Artificial Intelligence
+
+Artificial intelligence was used as a learning and documentation aid. It helped us discuss the DDA raycasting algorithm, explore parser-validation cases, review documentation against the project subject, and organize development tasks. Every suggested result was reviewed, tested, and discussed by the team before being incorporated into the project.
+
+---
+
+## Raycasting Math Formulas
+
+This section documents the core mathematical formulas used in the engine, mapped to the exact variable names found in our codebase (`ray`, `player`, `tex`). These formulas are adapted from Lode's Computer Graphics Tutorial - Raycasting. It is recommended to open this file in an IDE with math formula rendering support.
+
+### 1. Ray Screen Mapping
+
+$$\text{camera\_x} = 2 \times \frac{x}{\text{WIN\_WIDTH}} - 1$$
+
+$$\text{ray->dir\_x} = \text{player.dir\_x} + \text{player.plane\_x} \times \text{camera\_x}$$
+
+$$\text{ray->dir\_y} = \text{player.dir\_y} + \text{player.plane\_y} \times \text{camera\_x}$$
+
+---
+
+### 2. Grid Increment Distances ($\Delta$)
+
+$$\text{ray->delta\_x} = \left\vert{} \frac{1}{\text{ray->dir\_x}} \right\vert{}$$
+
+$$\text{ray->delta\_y} = \left\vert{} \frac{1}{\text{ray->dir\_y}} \right\vert{}$$
+
+---
+
+### 3. Initial Distance to the First Grid Line
+
+$$\text{If } \text{ray->dir\_x} < 0:$$
+
+$$\text{ray->step\_x} = -1$$
+
+$$\text{ray->side\_x} = (\text{player.pos\_x} - \text{ray->map\_x}) \times \text{ray->delta\_x}$$
+
+$$\text{If } \text{ray->dir\_x} \ge 0:$$
+
+$$\text{ray->step\_x} = 1$$
+
+$$\text{ray->side\_x} = (\text{ray->map\_x} + 1.0 - \text{player.pos\_x}) \times \text{ray->delta\_x}$$
+
+$$\text{If } \text{ray->dir\_y} < 0:$$
+
+$$\text{ray->step\_y} = -1$$
+
+$$\text{ray->side\_y} = (\text{player.pos\_y} - \text{ray->map\_y}) \times \text{ray->delta\_y}$$
+
+$$\text{If } \text{ray->dir\_y} \ge 0:$$
+
+$$\text{ray->step\_y} = 1$$
+
+$$\text{ray->side\_y} = (\text{ray->map\_y} + 1.0 - \text{player.pos\_y}) \times \text{ray->delta\_y}$$
+
+---
+
+### 4. DDA Algorithm (Loop Step)
+
+$$\text{If } \text{ray->side\_x} < \text{ray->side\_y}:$$
+
+$$\text{ray->side\_x} = \text{ray->side\_x} + \text{ray->delta\_x}$$
+
+$$\text{ray->map\_x} = \text{ray->map\_x} + \text{ray->step\_x}$$
+
+$$\text{ray->side} = 0$$
+
+$$\text{If } \text{ray->side\_x} \ge \text{ray->side\_y}:$$
+
+$$\text{ray->side\_y} = \text{ray->side\_y} + \text{ray->delta\_y}$$
+
+$$\text{ray->map\_y} = \text{ray->map\_y} + \text{ray->step\_y}$$
+
+$$\text{ray->side} = 1$$
+
+---
+
+### 5. Perpendicular Wall Distance
+
+$$\text{If } \text{ray->side} == 0:$$
+
+$$\text{ray->wall\_dist} = \text{ray->side\_x} - \text{ray->delta\_x}$$
+
+$$\text{If } \text{ray->side} == 1:$$
+
+$$\text{ray->wall\_dist} = \text{ray->side\_y} - \text{ray->delta\_y}$$
+
+---
+
+### 6. Screen Projection (Line Height and Limits)
+
+$$\text{ray->line\_h} = \left\lfloor \frac{\text{WIN\_HEIGHT}}{\text{ray->wall\_dist}} \right\rfloor$$
+
+$$\text{ray->draw\_start} = \frac{\text{WIN\_HEIGHT}}{2} - \frac{\text{ray->line\_h}}{2}$$
+
+$$\text{ray->draw\_end} = \frac{\text{WIN\_HEIGHT}}{2} + \frac{\text{ray->line\_h}}{2}$$
+
+---
+
+### 7. Horizontal Texture Coordinate
+
+$$\text{If } \text{ray->side} == 0:$$
+
+$$\text{ray->wall\_x} = \text{player.pos\_y} + \text{ray->wall\_dist} \times \text{ray->dir\_y}$$
+
+$$\text{If } \text{ray->side} == 1:$$
+
+$$\text{ray->wall\_x} = \text{player.pos\_x} + \text{ray->wall\_dist} \times \text{ray->dir\_x}$$
+
+$$\text{ray->wall\_x} = \text{ray->wall\_x} - \lfloor \text{ray->wall\_x} \rfloor$$
+
+$$\text{tex\_x} = \lfloor \text{ray->wall\_x} \times \text{tex->width} \rfloor$$
+
+---
+
+### 8. Vertical Texture Mapping
+
+$$\text{step} = \frac{\text{tex->height}}{\text{ray->line\_h}}$$
+
+$$\text{tex\_pos} = \left( \text{ray->draw\_start} - \frac{\text{WIN\_HEIGHT}}{2} + \frac{\text{ray->line\_h}}{2} \right) \times \text{step}$$
+
+$$\text{tex\_y} = \lfloor \text{tex\_pos} \rfloor \pmod{\text{tex->height}}$$
